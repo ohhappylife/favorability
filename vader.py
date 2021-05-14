@@ -3,6 +3,7 @@ from datetime import datetime
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import os
 
+# Get current date
 now = datetime.now()
 date = now.strftime("%m/%d/%Y")
 date = date.replace("/", '_')
