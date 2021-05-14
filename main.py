@@ -12,15 +12,15 @@ nations = ["china", "korea", "Japan"]
 for x in nations:
     keyword = x
     number = 3000 #Number of Tweets to Crawl
-    dsince = now.strftime("%Y/%m/%d") # Tweet Date
-    duntil = '2022-05-30' # Tweet Date
+    dsince = now.strftime("%Y/%m/%d") # Tweet Date (from)
+    duntil = '2022-05-30' # Tweet Date (to)
     location = "%s,%s,%s" % ("37.09024", "-95.712891", "2000mi") # USA
 
     # Twitter Login Info. DO NOT SHARE.
-    consumer_key = '3zms3ZQw3JEnBStmr9qu4kX3y'
-    consumer_secret = 'DQQ9MhkNu8doIYxAa1BLUdyRctXPW9sczDd62uoqIJS2oPwIi8'
-    access_token = '1343284034399563788-aqscQL3lsrm0yLP68KWcPR7DYxzgWj'
-    access_token_secret = 'KTt2BDtF4v0njX6NPHP7UILgf39QWnAoyPvGxMD381HgB'
+    consumer_key = ''
+    consumer_secret = ''
+    access_token = '-'
+    access_token_secret = ''
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
