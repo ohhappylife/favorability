@@ -5,16 +5,17 @@ from datetime import datetime
 from nltk.corpus import stopwords
 now = datetime.now()
 
+# Import stopwords from NLTK.
 stop_words = set(stopwords.words('english'))
 
 nations = ["china", "korea", "Japan"]
 
 for x in nations:
     keyword = x
-    number = 3000 #Number of Tweets to Crawl
+    number = 3000 #Number of Tweets to be crawled
     dsince = now.strftime("%Y/%m/%d") # Tweet Date
     duntil = '2022-05-30' # Tweet Date
-    location = "%s,%s,%s" % ("37.09024", "-95.712891", "2000mi") # USA
+    location = "%s,%s,%s" % ("37.09024", "-95.712891", "2000mi") # Roughly covers the USA
 
     # Twitter Login Info. DO NOT SHARE.
     consumer_key = ''
@@ -32,7 +33,18 @@ for x in nations:
     date = now.strftime("%m/%d/%Y")
     date = date.replace("/", '_')
 
+    """
+    Clear the text data by
+    1. Removing Emoji
+    2. Removing URLs
+    3. Removing @ (Mention) or # (Hashtag)
+    4. Removing RT
+    5. Removing Stopwords
+    6. Tokenizing the sentences
+    """
+    
     # Remove Emoji; might or might not delete all emoji.
+    # Please see https://unicode.org/emoji/charts/full-emoji-list.html to see the full list of emoji.
     def emoji(text):
         emoji_pattern = re.compile("["u"\U0001F600-\U0001F64F"
                                    u"\U0001F300-\U0001F5FF"
@@ -89,6 +101,7 @@ for x in nations:
     def stopwords(text):
         return " ".join([word for word in str(text).split() if word not in stop_words])
 
+    # File name = date_nations_twitter.csv
     wfile = open(date + "_" + keyword + "_twitter.csv", mode='w', encoding='utf8')
 
     # Cursor Setting
@@ -108,7 +121,7 @@ for x in nations:
                                                 'time',
                                                 'favorite_count',
                                                 'tweet_retweet_count',
-                                                 'tweet_text' +
+                                                'tweet_text' +
                                                 '\n')
                         )
         try:
